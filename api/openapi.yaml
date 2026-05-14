@@ -1,0 +1,449 @@
+openapi: 3.0.0
+info:
+  title: K8s Pod Monitor API
+  version: 1.0.0
+  description: Monitor Kubernetes pods, nodes, and events with real-time metrics
+  contact:
+    name: jpringle6
+    url: https://github.com/jpringle6/k8s-pod-monitor
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8080
+    description: Development server
+  - url: https://api.example.com
+    description: Production server
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns the health status of the monitoring service
+      operationId: getHealth
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+
+  /api/v1/metrics/pods:
+    get:
+      summary: Get pod metrics
+      description: Retrieve CPU, memory, and status metrics for pods in a namespace
+      operationId: getPodMetrics
+      tags:
+        - Metrics
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: namespace
+          in: query
+          description: Kubernetes namespace to query (default is 'default')
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 253
+            pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?$'
+            default: default
+          example: monitoring
+      responses:
+        '200':
+          description: Pod metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PodMetricsResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/v1/metrics/nodes:
+    get:
+      summary: Get node metrics
+      description: Retrieve CPU, memory, and status metrics for all cluster nodes
+      operationId: getNodeMetrics
+      tags:
+        - Metrics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Node metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeMetricsResponse'
+        '401':
+          description: Unauthorized - invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/v1/metrics/events:
+    get:
+      summary: Get Kubernetes events
+      description: Retrieve recent Kubernetes events from a namespace
+      operationId: getEvents
+      tags:
+        - Metrics
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: namespace
+          in: query
+          description: Kubernetes namespace to query (default is 'default')
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 253
+            pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?$'
+            default: default
+          example: monitoring
+      responses:
+        '200':
+          description: Events retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+        '401':
+          description: Unauthorized - invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/v1/metrics/all:
+    get:
+      summary: Get all metrics
+      description: Retrieve combined pod, node, and event metrics for a namespace
+      operationId: getAllMetrics
+      tags:
+        - Metrics
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: namespace
+          in: query
+          description: Kubernetes namespace to query (default is 'default')
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 253
+            pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?$'
+            default: default
+          example: monitoring
+      responses:
+        '200':
+          description: All metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllMetricsResponse'
+        '401':
+          description: Unauthorized - invalid or missing token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bearer token for authentication (optional for /health, required for /api/v1/metrics)
+
+  schemas:
+    HealthStatus:
+      type: object
+      required:
+        - status
+        - timestamp
+        - version
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+          description: Current health status of the service
+        timestamp:
+          type: string
+          format: date-time
+          description: Time when health status was checked
+        version:
+          type: string
+          description: API version
+          example: "1.0.0"
+
+    PodMetric:
+      type: object
+      required:
+        - name
+        - namespace
+        - status
+        - restarts
+        - age
+        - timestamp
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 253
+          description: Pod name
+          example: nginx-7c8c476d97-abc123
+        namespace:
+          type: string
+          minLength: 1
+          maxLength: 253
+          description: Kubernetes namespace
+          example: monitoring
+        status:
+          type: string
+          enum: [Running, Pending, Failed, Unknown, Succeeded, CrashLoopBackOff]
+          description: Current pod status
+        cpu:
+          type: string
+          nullable: true
+          description: CPU usage (millicores)
+          example: "100m"
+        memory:
+          type: string
+          nullable: true
+          description: Memory usage in Kubernetes notation
+          example: "256Mi"
+        restarts:
+          type: integer
+          minimum: 0
+          description: Number of container restarts
+        age:
+          type: string
+          description: Time since pod creation (human-readable)
+          example: "2h"
+        timestamp:
+          type: string
+          format: date-time
+          description: When this metric was collected
+
+    PodMetricsResponse:
+      type: object
+      required:
+        - pods
+        - timestamp
+        - namespace
+      properties:
+        pods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PodMetric'
+          description: List of pod metrics
+        timestamp:
+          type: string
+          format: date-time
+          description: When metrics were collected
+        namespace:
+          type: string
+          description: Namespace being queried
+
+    NodeMetric:
+      type: object
+      required:
+        - name
+        - status
+        - timestamp
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Node name
+          example: dev-control-plane
+        status:
+          type: string
+          enum: [Ready, NotReady, Unknown]
+          description: Current node status
+        cpu:
+          type: string
+          nullable: true
+          description: Allocatable CPU cores
+          example: "16"
+        memory:
+          type: string
+          nullable: true
+          description: Allocatable memory in Kubernetes notation
+          example: "7014484Ki"
+        pods:
+          type: integer
+          minimum: 0
+          description: Number of pods running on this node
+        timestamp:
+          type: string
+          format: date-time
+          description: When this metric was collected
+
+    NodeMetricsResponse:
+      type: object
+      required:
+        - nodes
+        - timestamp
+      properties:
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeMetric'
+          description: List of node metrics
+        timestamp:
+          type: string
+          format: date-time
+          description: When metrics were collected
+
+    Event:
+      type: object
+      required:
+        - name
+        - namespace
+        - kind
+        - reason
+        - type
+      properties:
+        name:
+          type: string
+          description: Event name
+          example: nginx-deployment.18b6d8f5e8f8c1a2
+        namespace:
+          type: string
+          description: Kubernetes namespace
+          example: monitoring
+        kind:
+          type: string
+          description: Type of object involved in event
+          example: Pod
+        message:
+          type: string
+          nullable: true
+          description: Event message
+          example: Started container
+        reason:
+          type: string
+          description: Event reason
+          example: Started
+        type:
+          type: string
+          enum: [Normal, Warning]
+          description: Event type
+        timestamp:
+          type: string
+          format: date-time
+          description: When event occurred
+
+    EventsResponse:
+      type: object
+      required:
+        - events
+        - timestamp
+        - namespace
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+          description: List of events
+        timestamp:
+          type: string
+          format: date-time
+          description: When events were collected
+        namespace:
+          type: string
+          description: Namespace being queried
+
+    AllMetricsResponse:
+      type: object
+      required:
+        - pods
+        - nodes
+        - events
+        - timestamp
+      properties:
+        pods:
+          type: array
+          items:
+            $ref: '#/components/schemas/PodMetric'
+          description: Pod metrics
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NodeMetric'
+          description: Node metrics
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+          description: Recent events
+        timestamp:
+          type: string
+          format: date-time
+          description: When metrics were collected
+        namespace:
+          type: string
+          description: Namespace being queried
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+          example: 500
+        message:
+          type: string
+          description: Error message
+          example: "Failed to get pod metrics"
+        details:
+          type: string
+          nullable: true
+          description: Additional error details
