@@ -1,0 +1,1133 @@
+==========================================
+K8s Pod Monitor API Test Suite
+==========================================
+Base URL: http://localhost:8080
+Namespace: monitoring
+
+[0;34mTesting /health endpoint...[0m
+{
+  "status": "healthy",
+  "timestamp": "2026-05-13T02:40:07.856524821Z",
+  "version": "1.0.0"
+}
+
+[0;34mTesting /api/v1/metrics/pods endpoint...[0m
+{
+  "namespace": "monitoring",
+  "pods": [
+    {
+      "name": "k8s-monitor-756ff7947-bfjgf",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "4m",
+      "timestamp": "2026-05-13T02:40:07.90580748Z"
+    },
+    {
+      "name": "nginx-77b4fdf86c-8vpl5",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:07.90580748Z"
+    },
+    {
+      "name": "nginx-77b4fdf86c-9f9vh",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:07.90580748Z"
+    },
+    {
+      "name": "nginx-77b4fdf86c-c7tkj",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:07.90580748Z"
+    },
+    {
+      "name": "redis-6ff7cd7598-2k9fc",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:07.90580748Z"
+    },
+    {
+      "name": "redis-6ff7cd7598-5bnxb",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:07.90580748Z"
+    }
+  ],
+  "timestamp": "2026-05-13T02:40:07.905837621Z"
+}
+
+[0;34mTesting /api/v1/metrics/nodes endpoint...[0m
+{
+  "nodes": [
+    {
+      "name": "dev-control-plane",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 9,
+      "timestamp": "2026-05-13T02:40:07.968879383Z"
+    },
+    {
+      "name": "dev-worker",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 4,
+      "timestamp": "2026-05-13T02:40:07.968879383Z"
+    },
+    {
+      "name": "dev-worker2",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 4,
+      "timestamp": "2026-05-13T02:40:07.968879383Z"
+    },
+    {
+      "name": "dev-worker3",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 4,
+      "timestamp": "2026-05-13T02:40:07.968879383Z"
+    }
+  ],
+  "timestamp": "2026-05-13T02:40:07.968893291Z"
+}
+
+[0;34mTesting /api/v1/metrics/events endpoint...[0m
+{
+  "events": [
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce2600f30a3",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5797c7cbfb-kd92r to dev-worker",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:49:12Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce285f0a4b7",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Pulling image \"kind-registry:5000/k8s-pod-monitor:v1\"",
+      "reason": "Pulling",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:50:35Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce2876f7fb2",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Failed to pull image \"kind-registry:5000/k8s-pod-monitor:v1\": rpc error: code = Unknown desc = failed to pull and unpack image \"kind-registry:5000/k8s-pod-monitor:v1\": failed to resolve reference \"kind-registry:5000/k8s-pod-monitor:v1\": failed to do request: Head \"https://kind-registry:5000/v2/k8s-pod-monitor/manifests/v1\": http: server gave HTTP response to HTTPS client",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:50:35Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce28770006d",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Error: ErrImagePull",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:50:35Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce299dd6796",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Back-off pulling image \"kind-registry:5000/k8s-pod-monitor:v1\"",
+      "reason": "BackOff",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:51:13Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce299de4fa6",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Error: ImagePullBackOff",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:51:00Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb.18aefce25ecc50b6",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5797c7cbfb-kd92r",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:49:12Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb.18aefd052290b72b",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Deleted pod: k8s-monitor-5797c7cbfb-kd92r",
+      "reason": "SuccessfulDelete",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:51:41Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf4cfc8064",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-2mllb to dev-worker",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf6f862e93",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf749953b2",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf849f674e",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:53Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdb1c3011229",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:02Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe70df0bbd7e",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-g6zsn to dev-worker3",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:43Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe7102b76571",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:44Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe71063aa451",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:44Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe711228e6df",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:44Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefece79e0e94f",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:25Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-gcxk6.18aefdaf49338840",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1c52f52d6",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-hbxwz to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:02Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1e724e01c",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:03Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1eaed1add",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:03Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1f59db7ee",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:03Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdeb89efc67f",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:10Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2a689dd6c",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-k9bm7 to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:27:00Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2ce680933",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:28:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2d245015a",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:28:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2e0d547aa",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:28:53Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aeff6d0ea460f5",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:35:46Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdede1851997",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-rcfrz to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:20Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdee0464b596",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:21Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdee075902d3",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:21Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdee12e5c6ea",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:21Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefe70dc16085c",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:43Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefece81e67048",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-rcpzj to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:25Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefeceb37ab3ab",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:26Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefeceb7e2943e",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:26Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefecec935a0af",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:26Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefef2a28597bb",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:27:00Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefef2abe33724",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Readiness probe failed: Get \"http://10.244.2.11:8080/health\": dial tcp 10.244.2.11:8080: connect: connection refused",
+      "reason": "Unhealthy",
+      "type": "Warning",
+      "timestamp": "2026-05-13T02:27:01Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefdaf4bbeda4f",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-2mllb",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefdb1c4090cbc",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-hbxwz",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:02Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefdede0d6d8e5",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-rcfrz",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:20Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefe70de022742",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-g6zsn",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:43Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefece7f622e88",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-rcpzj",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:25Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefef2a56318d3",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-k9bm7",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:27:00Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aeff6d0e80d413",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Deleted pod: k8s-monitor-5848c7c8fc-k9bm7",
+      "reason": "SuccessfulDelete",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:35:46Z"
+    },
+    {
+      "name": "k8s-monitor-5cf6d98f7-hm42d.18aefd1dad5208c5",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5cf6d98f7-hm42d to dev-worker",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:53:26Z"
+    },
+    {
+      "name": "k8s-monitor-5cf6d98f7-hm42d.18aefd1dcf7b3d6f",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Pulling image \"localhost:5000/k8s-pod-monitor:v1\"",
+      "reason": "Pulling",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:54:03Z"
+    },
+    {
+      "name": "k8s-monitor-5cf6d98f7-hm42d.18aefd1dd024fe64",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Failed to pull image \"localhost:5000/k8s-pod-monitor:v1\": rpc error: code = Unknown desc = failed to pull and unpack image \"localhost:5000/k8s-pod-monitor:v1\": failed to resolve reference \"localhost:5000/k8s-pod-monitor:v1\": failed to do request: Head \"http://localhost:5000/v2/k8s-pod-monitor/manifests/v1\": dial tcp [::1]:5000: connect: connection refused",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:54:03Z"
+    }
+  ],
+  "namespace": "monitoring",
+  "timestamp": "2026-05-13T02:40:08.013625261Z"
+}
+
+[0;34mTesting /api/v1/metrics/all endpoint...[0m
+{
+  "events": [
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce2600f30a3",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5797c7cbfb-kd92r to dev-worker",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:49:12Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce285f0a4b7",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Pulling image \"kind-registry:5000/k8s-pod-monitor:v1\"",
+      "reason": "Pulling",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:50:35Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce2876f7fb2",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Failed to pull image \"kind-registry:5000/k8s-pod-monitor:v1\": rpc error: code = Unknown desc = failed to pull and unpack image \"kind-registry:5000/k8s-pod-monitor:v1\": failed to resolve reference \"kind-registry:5000/k8s-pod-monitor:v1\": failed to do request: Head \"https://kind-registry:5000/v2/k8s-pod-monitor/manifests/v1\": http: server gave HTTP response to HTTPS client",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:50:35Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce28770006d",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Error: ErrImagePull",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:50:35Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce299dd6796",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Back-off pulling image \"kind-registry:5000/k8s-pod-monitor:v1\"",
+      "reason": "BackOff",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:51:13Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb-kd92r.18aefce299de4fa6",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Error: ImagePullBackOff",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:51:00Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb.18aefce25ecc50b6",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5797c7cbfb-kd92r",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:49:12Z"
+    },
+    {
+      "name": "k8s-monitor-5797c7cbfb.18aefd052290b72b",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Deleted pod: k8s-monitor-5797c7cbfb-kd92r",
+      "reason": "SuccessfulDelete",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:51:41Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf4cfc8064",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-2mllb to dev-worker",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf6f862e93",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf749953b2",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdaf849f674e",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:53Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-2mllb.18aefdb1c3011229",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:02Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe70df0bbd7e",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-g6zsn to dev-worker3",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:43Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe7102b76571",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:44Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe71063aa451",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:44Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefe711228e6df",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:44Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-g6zsn.18aefece79e0e94f",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:25Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-gcxk6.18aefdaf49338840",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1c52f52d6",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-hbxwz to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:02Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1e724e01c",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:03Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1eaed1add",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:03Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdb1f59db7ee",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:03Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-hbxwz.18aefdeb89efc67f",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:10Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2a689dd6c",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-k9bm7 to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:27:00Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2ce680933",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:28:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2d245015a",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:28:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aefef2e0d547aa",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:28:53Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-k9bm7.18aeff6d0ea460f5",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:35:46Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdede1851997",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-rcfrz to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:20Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdee0464b596",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:21Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdee075902d3",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:21Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefdee12e5c6ea",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:21Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcfrz.18aefe70dc16085c",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:43Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefece81e67048",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5848c7c8fc-rcpzj to dev-worker2",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:25Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefeceb37ab3ab",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Container image \"k8s-monitor:latest\" already present on machine",
+      "reason": "Pulled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:26Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefeceb7e2943e",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Created container monitor",
+      "reason": "Created",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:26Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefecec935a0af",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Started container monitor",
+      "reason": "Started",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:26Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefef2a28597bb",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Stopping container monitor",
+      "reason": "Killing",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:27:00Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc-rcpzj.18aefef2abe33724",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Readiness probe failed: Get \"http://10.244.2.11:8080/health\": dial tcp 10.244.2.11:8080: connect: connection refused",
+      "reason": "Unhealthy",
+      "type": "Warning",
+      "timestamp": "2026-05-13T02:27:01Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefdaf4bbeda4f",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-2mllb",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:03:52Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefdb1c4090cbc",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-hbxwz",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:04:02Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefdede0d6d8e5",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-rcfrz",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:08:20Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefe70de022742",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-g6zsn",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:17:43Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefece7f622e88",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-rcpzj",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:24:25Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aefef2a56318d3",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Created pod: k8s-monitor-5848c7c8fc-k9bm7",
+      "reason": "SuccessfulCreate",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:27:00Z"
+    },
+    {
+      "name": "k8s-monitor-5848c7c8fc.18aeff6d0e80d413",
+      "namespace": "monitoring",
+      "kind": "ReplicaSet",
+      "message": "Deleted pod: k8s-monitor-5848c7c8fc-k9bm7",
+      "reason": "SuccessfulDelete",
+      "type": "Normal",
+      "timestamp": "2026-05-13T02:35:46Z"
+    },
+    {
+      "name": "k8s-monitor-5cf6d98f7-hm42d.18aefd1dad5208c5",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Successfully assigned monitoring/k8s-monitor-5cf6d98f7-hm42d to dev-worker",
+      "reason": "Scheduled",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:53:26Z"
+    },
+    {
+      "name": "k8s-monitor-5cf6d98f7-hm42d.18aefd1dcf7b3d6f",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Pulling image \"localhost:5000/k8s-pod-monitor:v1\"",
+      "reason": "Pulling",
+      "type": "Normal",
+      "timestamp": "2026-05-13T01:54:03Z"
+    },
+    {
+      "name": "k8s-monitor-5cf6d98f7-hm42d.18aefd1dd024fe64",
+      "namespace": "monitoring",
+      "kind": "Pod",
+      "message": "Failed to pull image \"localhost:5000/k8s-pod-monitor:v1\": rpc error: code = Unknown desc = failed to pull and unpack image \"localhost:5000/k8s-pod-monitor:v1\": failed to resolve reference \"localhost:5000/k8s-pod-monitor:v1\": failed to do request: Head \"http://localhost:5000/v2/k8s-pod-monitor/manifests/v1\": dial tcp [::1]:5000: connect: connection refused",
+      "reason": "Failed",
+      "type": "Warning",
+      "timestamp": "2026-05-13T01:54:03Z"
+    }
+  ],
+  "namespace": "monitoring",
+  "nodes": [
+    {
+      "name": "dev-control-plane",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 9,
+      "timestamp": "2026-05-13T02:40:08.070812549Z"
+    },
+    {
+      "name": "dev-worker",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 4,
+      "timestamp": "2026-05-13T02:40:08.070812549Z"
+    },
+    {
+      "name": "dev-worker2",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 4,
+      "timestamp": "2026-05-13T02:40:08.070812549Z"
+    },
+    {
+      "name": "dev-worker3",
+      "status": "Ready",
+      "cpu": "16",
+      "memory": "7014484Ki",
+      "pods": 4,
+      "timestamp": "2026-05-13T02:40:08.070812549Z"
+    }
+  ],
+  "pods": [
+    {
+      "name": "k8s-monitor-756ff7947-bfjgf",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "4m",
+      "timestamp": "2026-05-13T02:40:08.055715321Z"
+    },
+    {
+      "name": "nginx-77b4fdf86c-8vpl5",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:08.055715321Z"
+    },
+    {
+      "name": "nginx-77b4fdf86c-9f9vh",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:08.055715321Z"
+    },
+    {
+      "name": "nginx-77b4fdf86c-c7tkj",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:08.055715321Z"
+    },
+    {
+      "name": "redis-6ff7cd7598-2k9fc",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:08.055715321Z"
+    },
+    {
+      "name": "redis-6ff7cd7598-5bnxb",
+      "namespace": "monitoring",
+      "status": "Running",
+      "cpu": "",
+      "memory": "",
+      "restarts": 0,
+      "age": "2h",
+      "timestamp": "2026-05-13T02:40:08.055715321Z"
+    }
+  ],
+  "timestamp": "2026-05-13T02:40:08.070891508Z"
+}
+
+[0;32mAll tests completed![0m
